@@ -1,0 +1,427 @@
+port: 7892
+socks-port: 7891
+mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
+mode: rule
+ipv6: false
+allow-lan: true
+log-level: debug
+external-controller: 0.0.0.0:9090
+external-controller-tls: 0.0.0.0:9091
+external-doh-server: /dns-query
+external-ui: dashboard
+external-ui-name: ui
+external-ui-url: "https://github.com//Zephyruso/zashboard/releases/latest/download/dist.zip"
+keep-alive-interval: 30
+disable-keep-alive: true
+keep-alive-idle: 15
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: random
+geodata-mode: true
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+
+geox-url:
+  geoip: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat
+  geosite: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat
+  mmdb: https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/Country.mmdb
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+  smart-collector-size: 100
+lgbm-auto-update: true
+lgbm-update-interval: 72
+lgbm-url: "https://github.com/vernesong/mihomo/releases/download/LightGBM-Model/Model.bin"
+dns:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: true
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  listen: 0.0.0.0:5591
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 1.1.1.1
+    - 8.8.8.8
+  nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+    - 119.29.29.29
+    - 180.76.76.76
+    - 1.1.1.1
+    - 8.8.8.8
+  proxy-server-nameserver:
+    - https://cloudflare-dns.com/dns-query
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+
+proxies:
+  - name: redir-in
+    type: direct
+    port: 9797
+    server: 127.0.0.1
+proxy-groups:
+  - name: "PROXY"
+    type: "select"
+    url: "http://www.gstatic.com/generate_204"
+ #   disable-udp: true
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    proxies:
+      - "🎈Auto"
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+      - "🤖 AI"
+  - name: "🎈Auto"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    icon: "https://raw.githubusercontent.com/abbasdvd3/clash/refs/heads/main/provide/Azadi.jpg"
+
+  - name: "🤖 AI"
+    type: "fallback"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+ #   disable-udp: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    icon: "https://raw.gitmirror.com/Koolson/Qure/master/IconSet/Color/Airport.png"
+    proxies:
+      - "🇺🇲"
+      - "🇭🇰"
+      - "🇯🇵"
+      - "🇹🇼"
+      - "🇸🇬"
+      - "🇰🇷"
+  - name: "🇭🇰"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇭🇰|HK|Hong|Kong|HGC|WTT|CMI"
+
+  - name: "🇯🇵"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇯🇵|JP|Japan|Tokyo|Osaka|Saitama"
+
+  - name: "🇺🇲"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇺🇸|US|America|United.*?States"
+
+  - name: "🇹🇼"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    hidden: true
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇹🇼|TW|Taiwan"
+
+  - name: "🇸🇬"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    hidden: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇸🇬|SG|Singapore"
+
+  - name: "🇰🇷"
+    type: "smart"
+    policy-priority: "excellent:2;Preparation:0.5" 
+    uselightgbm: true
+    collectdata: true
+    sample-rate: 1
+    prefer-asn: true
+    url: "http://www.gstatic.com/generate_204"
+    include-all-providers: true
+    use:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+    exclude-type: redir-in|Direct|Reject|Pass|Compatible|RejectDrop|Dns|Relay|Selector|Fallback|URLTest|LoadBalance|Ssh|Trojan
+    filter: "🇰🇷|KO?R|Korea"
+
+  - name: "🎯 Direct"
+    type: "select"
+    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    proxies:
+      - "redir-in"
+      - "PROXY"
+proxy-providers:
+  A1:
+    type: http
+    url: "https://raw.githubusercontent.com/ssrsub/ssr/master/clash.yaml"
+    path: ./smart2/A1.yaml
+    exclude-type: redir-in|Direct|Trojan
+    interval: 300
+    health-check:
+      enable: true
+      url: "http://www.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: false
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      override:
+        additional-prefix: "[excellent]"
+        additional-suffix: "[Preparation]"
+  A2:
+    type: http
+    url: "https://obeapi.s3.ap-east-1.amazonaws.com/vpn/sub-clash.yaml"
+    path: ./smart2/A2.yaml
+    exclude-type: redir-in|Direct|Trojan
+    interval: 300
+    health-check:
+      enable: true
+      url: "http://www.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: false
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      override:
+        additional-prefix: "[excellent]"
+        additional-suffix: "[Preparation]"
+  A3:
+    type: http
+    url: "https://config.v2cross.com/clashprofile/config"
+    path: ./smart2/A3.yaml
+    exclude-type: redir-in|Direct|Trojan
+    interval: 300
+    health-check:
+      enable: true
+      url: "http://www.gstatic.com/generate_204"
+      interval: 300
+      timeout: 5000
+      lazy: false
+      expected-status: 204
+      header:
+      User-Agent:
+      - "Clash/v1.18.0"
+      - "mihomo/1.18.3"
+      - "meta/0.2.0.9.smart"
+      - "meta/0.2.0.9.meta"
+      override:
+        additional-prefix: "[excellent]"
+        additional-suffix: "[Preparation]"
+#  A4:
+#    type: http
+#    url: "https://proxypool.link/clash/proxies"
+#    path: ./smart2/A4.yaml
+#    interval: 300
+#    health-check:
+ #     enable: true
+#      url: "http://www.gstatic.com/generate_204"
+#      interval: 300
+ #     timeout: 5000
+ #     lazy: true
+#      expected-status: 204
+ #     header:
+ #     User-Agent:
+ #     - "Clash/v1.18.0"
+#      - "mihomo/1.18.3"
+#      - "meta/0.2.0.9.smart"
+#      - "meta/0.2.0.9.meta"
+#      override:
+ #       additional-prefix: "[excellent]"
+ #       additional-suffix: "[Preparation]"
+
+rule-providers:
+  ir:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.yaml"
+    interval: 86400
+  ads:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ads.yaml"
+    interval: 86400
+  malware:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.yaml"
+    interval: 86400
+  phishing:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.yaml"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.yaml"
+    interval: 86400
+  apps:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/apps.yaml"
+    interval: 86400
+  ircidr:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.yaml"
+    interval: 86400
+  private:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/private.yaml"
+    interval: 86400
+  irasn:
+    type: http
+    format: yaml
+    behavior: classical
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/irasn.yaml"
+    interval: 86400
+  AWA:
+    type: http
+    format: yaml
+    behavior: domain
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml"
+    interval: 86400  
+rules :
+  - DOMAIN-KEYWORD,soft98.ir,🎯 Direct
+  - DOMAIN,soft98,🎯 Direct
+  - DOMAIN-SUFFIX,soft98.ir,🎯 Direct
+  - DOMAIN-KEYWORD,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN,dl2soft98.82,🎯 Direct
+  - DOMAIN-SUFFIX,dl2soft98.82.ir,🎯 Direct
+  - DOMAIN-SUFFIX,farsroid,🎯 Direct
+  - DOMAIN-KEYWORD,farsroid.com,🎯 Direct
+  - DOMAIN,farsroid.com,🎯 Direct
+  - DOMAIN,ad.com,REJECT
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.samsung.android.location,REJECT,no-resolve
+  - PROCESS-NAME,com.android.localtransport,REJECT,no-resolve
+  - PROCESS-NAME,com.google.android.gms.location.history,REJECT,no-resolve
+  - PROCESS-NAME,com.sec.location.nsflp2,REJECT,no-resolve
+  - PROCESS-NAME,com.android.location.fused,REJECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,🎯 Direct,no-resolve
+  - SRC-IP-CIDR,192.168.1.201/32,🎯 Direct
+  - SRC-IP-SUFFIX,192.168.1.201/8,🎯 Direct
+  - DOMAIN-SUFFIX,local,🎯 Direct
+  - IP-CIDR,127.0.0.0/8,🎯 Direct
+  - IP-CIDR,172.16.0.0/12,🎯 Direct
+  - IP-CIDR,192.168.0.0/16,🎯 Direct
+  - RULE-SET,private,🎯 Direct,no-resolve
+  - RULE-SET,apps,🎯 Direct
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,AWA,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,ir,🎯 Direct
+  - RULE-SET,ircidr,🎯 Direct
+  - RULE-SET,irasn,🎯 Direct
+  - GEOIP,ir,🎯 Direct
+  - GEOIP,private,🎯 Direct,no-resolve
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,category-ir,🎯 Direct,no-resolve
+  - GEOSITE,ir,🎯 Direct
+  - MATCH,PROXY
